@@ -1,0 +1,10 @@
+Revision history for Proc::Daemontools.
+
+1.03  Mon Nov 10 15:42:13 2003
+	- README file updated
+	- pod documentation updated
+	- test script t/1.t updated
+
+1.00  Sat Nov  8 21:24:52 2003
+	- original version;
+
