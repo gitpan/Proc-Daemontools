@@ -1,5 +1,10 @@
 Revision history for Proc::Daemontools.
 
+1.04  Tue Nov 11 14:09:45 2003
+	- pod documentation updated
+	- test script t/1.t updated to not fail if a machine doesn´t have
+	  the svscan process running
+
 1.03  Mon Nov 10 15:42:13 2003
 	- README file updated
 	- pod documentation updated

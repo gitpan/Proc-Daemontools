@@ -1,5 +1,6 @@
 #
 # Daemontools.pm  -  Perl interface for the functionalities of Daemontools
+# Author: Bruno Negrao G. Zica - bnegrao@engepel.com.br
 #
 
 package Proc::Daemontools;
@@ -9,7 +10,7 @@ use warnings;
 use Carp;
 use vars qw($VERSION);
 
-$VERSION = "1.03";
+$VERSION = "1.04";
 
 #########################################################
 # ENVIRONMENTAL CONFIGURATION VARIABLES (default values)
@@ -314,12 +315,12 @@ if people require it.
     daemon is set.
     
     Returns:
-        A Proc::Daemontools object.
+        Object: A Proc::Daemontools object.
 
     Atributes:
-        SERVICE_DIR - path to service dir
-        DAEMONTOOLS_DIR - path to executables dir
-        DAEMON - a the default daemon
+        SERVICE_DIR	: path to service dir
+        DAEMONTOOLS_DIR	: path to executables dir
+        DAEMON		: a the default daemon
 
     To set your directories:
 
@@ -341,7 +342,7 @@ if people require it.
     Set/get the default daemon.
 
     Returns:
-        String containing the default daemon or undef if none was set.
+        String: containing the default daemon or undef if none was set.
 
 =head2	up()
 
@@ -352,15 +353,15 @@ if people require it.
     If you pass it a daemon name as an argument it will start the passed daemon 
     instead of the default one.
 
-    Retu'rns: 
-        boolean - 1 if the daemon is up, 0 otherwise.
+    Returns: 
+        boolean: 1 if the daemon is up, 0 otherwise.
     
 =head2	down()
 
     Works just like up() but issues a "svc -d" to stop the daemon.
 
     Returns: 
-        boolean - 1 if the daemon is down, 0 otherwise.
+        boolean: 1 if the daemon is down, 0 otherwise.
     
 =head2	status()
 
@@ -368,7 +369,7 @@ if people require it.
     name of a daemon as an argument.
 
     Returns:
-        String, the same output of svstat
+        String: the same output of svstat
 
 =head2	is_up()
 
@@ -376,7 +377,7 @@ if people require it.
     as an argument.
     
     Returns:
-        boolean - 1 if the daemon is up, 0 otherwise.
+        boolean:  1 if the daemon is up, 0 otherwise.
 
 =head1 SEE ALSO
 

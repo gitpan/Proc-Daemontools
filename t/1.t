@@ -3,34 +3,23 @@
 
 #########################
 
-# change 'tests => 1' to 'tests => last_test_to_print';
-
 use constant THIS_CLASS => 'Proc::Daemontools';
-use Test::More tests => 4;
-BEGIN { use_ok(THIS_CLASS) };
+use Test::More;
 
-#########################
+$have_svscan = 0;
 
-# Insert your test code below, the Test::More module is use()ed here so read
-# its man page ( perldoc Test::More ) for help writing this test script.
+if ($ps = find_svscan()) {
+    plan tests => 3;
+} else {
+    plan tests => 1;
+}
+
+
+use_ok(THIS_CLASS);
 
 $SVC = "/usr/local/bin/svc";
 
-# Searching for the svscan process
-$ps = `ps -C svscan -o args= 2>&1`;
-$status = $?;
-is ($status, 0,	"the svscan process is running");
-
-if ( $status != 0 ) {
-    if ($ps) {
-	print "ERROR: execution of 'ps -C svscan -o args= 2>&1' failed:\n", 
-	      $ps, 
-	      "To continue with the tests I need to run this command.\n";
-    } else {
-	print "ERROR: the svscan process is not running on your machine. ",
-	      "I´ll assume you don´t have the daemontools package installed.\n";
-    }
-} else {
+if ( $ps ) {
     $SKIP_REASON = "WARNING: the svc file cannot be found on its default location " .
 	  "\'$SVC\'. Skipping the remaining tests.";
     SKIP: {
@@ -49,19 +38,20 @@ if ( $status != 0 ) {
 	}
 	ok( defined $svc,		'a new ' . THIS_CLASS . " object was created" );
 	ok( $svc->isa(THIS_CLASS),	"testing it´s classname" );
-	if ( opendir (DIR, $SERVICE_DIR) ) {
-	    print "Here goes some information about your daemons:\n";
-	    while ($daemon = readdir(DIR)) {
-		next if ($daemon =~ /^\.[.]?/ ); # skips '.' and '..' directories
-		eval {
-		    if ($svc->is_up($daemon)) {
-			print "\t$daemon is up.\n";
-		    } else {
-			print "\t$daemon is down.\n";
-		    }
-		};
-	    }
-	    close (DIR);
+    }
+}
+
+sub find_svscan() { # returns: string
+    # Searching for the svscan process
+    $ps = `ps -C ssvscan -o args= 2>&1`;
+    if ( $? == 0 ) {
+	return $ps;
+    } else { # ps failed for some reason
+	# if we find svscan on this machine, we return the string that 
+	# ps should output:
+	if (-e "/usr/local/bin/svscan") {
+	    return "svscan /service";
 	}
+	return undef;
     }
 }
