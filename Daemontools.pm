@@ -10,7 +10,7 @@ use warnings;
 use Carp;
 use vars qw($VERSION);
 
-$VERSION = "1.05";
+$VERSION = "1.06";
 
 #########################################################
 # ENVIRONMENTAL CONFIGURATION VARIABLES (default values)
@@ -312,74 +312,62 @@ if people require it.
 
 =head2	new()
 
-    Instantiate a Proc::Daemontools object. Without arguments it assumes 
-    its default values for the important directories. Also no default 
-    daemon is set.
-    
-    Returns:
-        Object: A Proc::Daemontools object.
+Instantiate a Proc::Daemontools object. Without arguments it assumes its default values for the important directories. Also no default daemon is set.
 
-    Atributes:
-        SERVICE_DIR	: path to service dir
-        DAEMONTOOLS_DIR	: path to executables dir
-        DAEMON		: a the default daemon
+I<Returns>: B<object>: A Proc::Daemontools object.
 
-    To set your directories:
+Atributes:
 
-        my $svc = new Proc::Daemontools (
-            SERVICE_DIR => "/my_path",
-            DAEMONTOOLS_DIR => "/my_path/bin"
-        );
+    SERVICE_DIR		: path to service dir
+    DAEMONTOOLS_DIR	: path to executables dir
+    DAEMON		: a the default daemon
+
+To set your directories:
+
+    my $svc = new Proc::Daemontools (
+        SERVICE_DIR => "/my_path",
+        DAEMONTOOLS_DIR => "/my_path/bin"
+    );
         
-    To clone an existing object:
+To clone an existing object:
 
-        my $svc2 = $svc->new(); # $svc2 has the same atributes of $svc
+    my $svc2 = $svc->new(); # $svc2 has the same atributes of $svc
     
-    To set a default daemon:
+To set a default daemon:
 
-        my $send = $svc2->new( DAEMON => "qmail-send" );
+    my $send = $svc2->new( DAEMON => "qmail-send" );
 
 =head2	daemon()        
 
-    Set/get the default daemon.
+Set/get the default daemon.
 
-    Returns:
-        String: containing the default daemon or undef if none was set.
+I<Returns>: B<string>: containing the default daemon or B<undef> if none was set.
 
 =head2	up()
 
-    Starts the default daemon. It not only issues a "svc -u" on the daemon, but
-    it also checks with svstat to see if the daemon really was brought up. So 
-    you don´t want to check it again by yourself, ok?
+Starts the default daemon. It not only issues a "svc -u" on the daemon, but it also checks with svstat to see if the daemon really was brought up. So you don´t want to check it again by yourself, ok?
 
-    If you pass it a daemon name as an argument it will start the passed daemon 
-    instead of the default one.
+If you pass it a daemon name as an argument it will start the passed daemon instead of the default one.
 
-    Returns: 
-        boolean: 1 if the daemon is up, 0 otherwise.
+I<Returns>: B<boolean>: 1 if the daemon is up, 0 otherwise.
 
-=head2	down()
+=head2 down()
 
-    Works just like up() but issues a "svc -d" to stop the daemon.
+Works just like up() but issues a "svc -d" to stop the daemon.
 
-    Returns: 
-        boolean: 1 if the daemon is down, 0 otherwise.
+I<Returns>: B<boolean>: 1 if the daemon is down, 0 otherwise.
 
 =head2	status()
 
-    Prints the output of svstat for the default daemon. It also accepts the 
-    name of a daemon as an argument.
+Prints the output of svstat for the default daemon. It also accepts the name of a daemon as an argument.
 
-    Returns:
-        String: the same output of svstat
+I<Returns>: B<string>: the same output of svstat
 
-=head2	is_up()
+=head2 is_up()
 
-    Returns if the default daemon is up. It also accepts the name of a daemon 
-    as an argument.
-    
-    Returns:
-        boolean:  1 if the daemon is up, 0 otherwise.
+Returns if the default daemon is up. It also accepts the name of a daemon as an argument.
+
+I<Returns>: B<boolean>: 1 if the daemon is up, 0 otherwise.
 
 =head1 SEE ALSO
 
@@ -387,7 +375,7 @@ Daemontools web site: http://cr.yp.to/daemontools.html
 
 =head1 AUTHOR
 
-Bruno Negrao, bnegrao@engepel.com.br
+Bruno Negrao,  B<bnegrao@engepel.com.br>
 
 =head1 COPYRIGHT AND LICENSE
 
