@@ -1,4 +1,4 @@
-Proc/Daemontools version 0.01
+Proc/Daemontools version 1.05
 =============================
 
 This module is a Perl interface for Daemontools package. 
@@ -23,11 +23,10 @@ INSTALLATION
 
 To install this module type the following:
 
-   1 - make sure the svscan process is running
-   2 - perl Makefile.PL
-   3 - make
-   4 - make test
-   5 - make install
+   1 - perl Makefile.PL
+   2 - make
+   3 - make test
+   4 - make install
 
 
 COPYRIGHT AND LICENCE

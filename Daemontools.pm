@@ -10,7 +10,7 @@ use warnings;
 use Carp;
 use vars qw($VERSION);
 
-$VERSION = "1.04";
+$VERSION = "1.05";
 
 #########################################################
 # ENVIRONMENTAL CONFIGURATION VARIABLES (default values)
@@ -182,7 +182,7 @@ sub doSvc() { # returns: boolean
 # Tells if the daemon is in a determined state. States are: up, down.
 # If it doesn´t receive an state string, it will return a string containing the output
 # of svstat about the required daemon.
-# To know if qmail-send is stoped:
+# To know if qmail-send is stopped:
 #     my $boolean = $self->_isDaemon("qmail-send", "down");
 # To know if qmail-smtpd is started:
 #     my $boolean = $self->_isDaemon("qmail-smtpd", "up");
@@ -226,7 +226,9 @@ sub status () { # returns: string
 
 1;
 __END__
-# Below is stub documentation for your module. You'd better edit it!
+#
+# DOCUMENTATION
+#
 
 =head1 NAME
 
@@ -274,7 +276,7 @@ Proc::Daemontools - Perl interface for the functionalities
  # Let´s see what svstat says about it:
  print "The current status of "   . $svc->daemon() .  " " .
        "reported by svstat is: "  . $svc->status() .  "\n";
-         
+
 =head1 ABSTRACT
 
 This module is a Perl interface for Daemontools package.
@@ -282,7 +284,7 @@ Daemontools was written by Dan Bernstein and is intended to control Unix/Linux
 daemons. 
 
 =head1 DESCRIPTION
-  
+
 Proc::Daemontools requires that the Daemontools package be installed on your
 machine in order to function. It won´t even instantiate its object if it can´t 
 find the Daemontools executables.
@@ -338,7 +340,7 @@ if people require it.
         my $send = $svc2->new( DAEMON => "qmail-send" );
 
 =head2	daemon()        
-  
+
     Set/get the default daemon.
 
     Returns:
@@ -355,14 +357,14 @@ if people require it.
 
     Returns: 
         boolean: 1 if the daemon is up, 0 otherwise.
-    
+
 =head2	down()
 
     Works just like up() but issues a "svc -d" to stop the daemon.
 
     Returns: 
         boolean: 1 if the daemon is down, 0 otherwise.
-    
+
 =head2	status()
 
     Prints the output of svstat for the default daemon. It also accepts the 
